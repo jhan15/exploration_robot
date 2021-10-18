@@ -109,7 +109,7 @@ $ rosrun irob_assignment_1 controller.py
 $ rosrun irob_assignment_1 controller_feedback.py
 ```
 
-#### Simulation result
+#### Simulation result (feedback)
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/62132206/137804639-fe2ab29b-333c-4385-b9d8-b2332268e9a0.gif" width="600">
