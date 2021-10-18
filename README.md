@@ -24,7 +24,7 @@ rosdep update
 
 sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential python-pip python-catkin-tools
 
-# Install ROS packages and such for assignment 1
+# Install ROS packages and such
 
 sudo apt install ros-melodic-ros-tutorials ros-melodic-turtlebot3 ros-melodic-turtlebot3-simulations ros-melodic-navigation libspatialindex-dev libqt4-dev
 
