@@ -75,12 +75,12 @@ Help a [TurtleBot3](http://emanual.robotis.com/docs/en/platform/turtlebot3/overv
 
 ### System description
 
-* `_exploration_ node`: based on [receding horizon "next-best-view" (RH-NBV)](https://ieeexplore.ieee.org/abstract/document/7487281).
-* `_collision avoidance_ node`: based on [the obstacle-restriction method (ORM)](https://ieeexplore.ieee.org/abstract/document/1545546) and [pure pursuit](https://apps.dtic.mil/docs/citations/ADA255524) (for smooth control), that ensures safe path following.
-* `_SLAM_ node`: for Burger to localize herself/himself, based on [Hector SLAM](https://wiki.ros.org/hector_slam), which does mapping and localization.
-* `_costmap_2d_ node`: [_costmap_2d_](https://wiki.ros.org/costmap_2d) node in order to make the exploration and collision avoidance simpler.
-* `_robot_state_publisher_ node`: [_robot_state_publisher_](https://wiki.ros.org/robot_state_publisher) node to get the necessary transformations.
-* `_controller_ node`: using the exploration node and the collision avoidance node in order to move Burger around in the environment.
+* `exploration node`: based on [receding horizon "next-best-view" (RH-NBV)](https://ieeexplore.ieee.org/abstract/document/7487281).
+* `collision avoidance node`: based on [the obstacle-restriction method (ORM)](https://ieeexplore.ieee.org/abstract/document/1545546) and [pure pursuit](https://apps.dtic.mil/docs/citations/ADA255524) (for smooth control), that ensures safe path following.
+* `SLAM node`: for Burger to localize herself/himself, based on [Hector SLAM](https://wiki.ros.org/hector_slam), which does mapping and localization.
+* `costmap_2d node`: [_costmap_2d_](https://wiki.ros.org/costmap_2d) node in order to make the exploration and collision avoidance simpler.
+* `robot_state_publisher node`: [_robot_state_publisher_](https://wiki.ros.org/robot_state_publisher) node to get the necessary transformations.
+* `controller node`: using the exploration node and the collision avoidance node in order to move Burger around in the environment.
 
 ### Run the simulator
 
