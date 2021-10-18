@@ -67,23 +67,22 @@ catkin_make -DCMAKE_BUILD_TYPE=RelWithDebInfo
 source ~/.bashrc
 ```
 
-### Description
+## Description
 
 Help a [TurtleBot3](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/) robot explore an unknown environment. The robot is called Burger and you can see a picture of Burger below.
 
 ![TurtleBot3 Burger](images/turtlebot3_burger.png "TurtleBot3 Burger. Image taken from: http://emanual.robotis.com/docs/en/platform/turtlebot3/specifications/#data-of-turtlebot3-burger")
 
-Image taken from: [http://emanual.robotis.com/docs/en/platform/turtlebot3/specifications/#data-of-turtlebot3-burger](http://emanual.robotis.com/docs/en/platform/turtlebot3/specifications/#data-of-turtlebot3-burger)
+### System description
 
-The ability to perform autonomous exploration is essential for an autonomous system operating in unstructured or unknown environments where it is hard or even impossible to describe the environment beforehand.
+* `_exploration_ node`: based on [receding horizon "next-best-view" (RH-NBV)](https://ieeexplore.ieee.org/abstract/document/7487281).
+* `_collision avoidance_ node`: based on [the obstacle-restriction method (ORM)](https://ieeexplore.ieee.org/abstract/document/1545546) and [pure pursuit](https://apps.dtic.mil/docs/citations/ADA255524) (for smooth control), that ensures safe path following.
+* `_SLAM_ node`: for Burger to localize herself/himself, based on [Hector SLAM](https://wiki.ros.org/hector_slam), which does mapping and localization.
+* `_costmap_2d_ node`: [_costmap_2d_](https://wiki.ros.org/costmap_2d) node in order to make the exploration and collision avoidance simpler.
+* `_robot_state_publisher_ node`: [_robot_state_publisher_](https://wiki.ros.org/robot_state_publisher) node to get the necessary transformations.
+* `_controller_ node`: using the exploration node and the collision avoidance node in order to move Burger around in the environment.
 
-#### System description
-
-An _exploration_ node, based on [receding horizon "next-best-view" (RH-NBV)](https://ieeexplore.ieee.org/abstract/document/7487281), is prepared. A _collision avoidance_ node, based on [the obstacle-restriction method (ORM)](https://ieeexplore.ieee.org/abstract/document/1545546) and [pure pursuit](https://apps.dtic.mil/docs/citations/ADA255524) (for smooth control), that ensures safe path following, is used. In order for Burger to localize herself/himself you will also run a _SLAM_ node, based on [Hector SLAM](https://wiki.ros.org/hector_slam), which does mapping and localization. We will also make use of a [_costmap_2d_](https://wiki.ros.org/costmap_2d) node in order to make the exploration and collision avoidance simpler. The simulator we use is called [Gazebo](http://gazebosim.org/) and it is a popular simulator when working with ROS. Lastly, we will use a [_robot_state_publisher_](https://wiki.ros.org/robot_state_publisher) node to get the necessary transformations.
-
-We create a _controller_ node that is using the exploration node and the collision avoidance node in order to move Burger around in the environment.
-
-#### Run the simulator
+### Run the simulator
 
 Open three terminals.
 
@@ -107,56 +106,13 @@ roslaunch irob_assignment_1 start.launch
 
 In the main view of the RViz window you can see a small Turtlebot3 Burger robot in the middle of the white area. The white area of the map is called _free space_, it is space where the robot knows there is nothing. The large gray area is _unknown space_, it is space that the robot knowns nothing about. It can be either _free space_ or _occupied space_. _Occupied space_ is the cerise colored space. The cyan colored space is called _C-space_, it is space that are a distance from the _occupied space_ such that the robot would collied with the _occupied space_ if it would move into it. Our job is to help Burger explore as much of the _unknown space_ as possible.
 
-#### Simple approach
-
-If you go into the folder `irob_assignment_1/scripts` you will see a file called `controller.py`. Here we have made a skeleton for the controller node that you should write. So create your controller node in that file. When you are done you can test your controller by running:
+### Simple approach
 
 ```bash
 rosrun irob_assignment_1 controller.py
 ```
 
-If your code does not work yet, or you want to restart you simply have to close down your node and `start.launch` by going to the terminal where you started `start.launch` and press `CTRL+C`. Thereafter you launch the `start.launch` again:
-
-```bash
-roslaunch irob_assignment_1 start.launch
-```
-
-Together with your node in a seperate terminal:
-
-```bash
-rosrun irob_assignment_1 controller.py
-```
-
-__Pseudocode__ for the assignment:
-
-```python
-# Init stuff
-while True:
-    path, gain = get_path_from_action_server()
-    if path is empty:
-        exit() # Done
-    while path is not empty:
-      path, setpoint = get_updated_path_and_setpoint_from_service(path)
-      setpoint_transformed = transform_setpoint_to_robot_frame(setpoint)
-      publish(setpoint_transformed)
-      sleep()
-```
-
-#### OPTIONAL: Callback based approach
-
-If you did the mini-project using the simple approach you will notice that the exploration is quite slow and that Burger is just standing still a lot. This is because we are not using Actionlib to it's full potential. We are simply using the action server as a service.
-
-To utilize Actionlib fully we have to use the _callback based action client_.
-
-The difference from the none callback based action client is that we specify three callback functions when calling send_goal:
-
-* `active_cb`: This will be called as soon as the goal has been sent to the server.
-* `feedback_cb`: This will be called every time the server sends feedback to the client.
-* `done_cb`: This will be called when the server is done with the goal, when the client cancel the goal, or an error happens during processing of the goal.
-
-As you can see we also do not `wait_for_result()` or `get_result()` since we will get the feedback or result as soon as it is available in the `feedback_cb` or `done_cb` callback, respectively.
-
-To run it you type in the terminal:
+#### Callback based approach
 
 ```bash
 rosrun irob_assignment_1 controller_feedback.py
