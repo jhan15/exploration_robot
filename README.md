@@ -84,7 +84,7 @@ Help a [TurtleBot3](http://emanual.robotis.com/docs/en/platform/turtlebot3/overv
 
 ### Run the simulator
 
-Open three terminals.
+Open four terminals.
 
 In the first terminal you should start the ROS Master:
 
@@ -104,9 +104,8 @@ And in the third terminal launch the file `start.launch` inside `irob_assignment
 roslaunch irob_assignment_1 start.launch
 ```
 
-In the main view of the RViz window you can see a small Turtlebot3 Burger robot in the middle of the white area. The white area of the map is called _free space_, it is space where the robot knows there is nothing. The large gray area is _unknown space_, it is space that the robot knowns nothing about. It can be either _free space_ or _occupied space_. _Occupied space_ is the cerise colored space. The cyan colored space is called _C-space_, it is space that are a distance from the _occupied space_ such that the robot would collied with the _occupied space_ if it would move into it. Our job is to help Burger explore as much of the _unknown space_ as possible.
-
-### Simple approach
+In the fourth terminal run the controller.
+#### Simple approach
 
 ```bash
 rosrun irob_assignment_1 controller.py
