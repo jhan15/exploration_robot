@@ -74,7 +74,7 @@ Help a [TurtleBot3](http://emanual.robotis.com/docs/en/platform/turtlebot3/overv
 * `robot_state_publisher node`: [_robot_state_publisher_](https://wiki.ros.org/robot_state_publisher) node to get the necessary transformations.
 * `controller node`: using the exploration node and the collision avoidance node in order to move Burger around in the environment.
 
-### Run the simulator
+## Run the simulator
 
 Open four terminals.
 
@@ -109,7 +109,7 @@ $ rosrun irob_assignment_1 controller.py
 $ rosrun irob_assignment_1 controller_feedback.py
 ```
 
-#### Simulation result (feedback)
+### Simulation result (feedback)
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/62132206/137804639-fe2ab29b-333c-4385-b9d8-b2332268e9a0.gif" width="600">
