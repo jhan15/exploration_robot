@@ -61,7 +61,9 @@ $ source ~/.bashrc
 
 Help a [TurtleBot3](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/) robot explore an unknown environment. The robot is called Burger and you can see a picture of Burger below.
 
-![TurtleBot3 Burger](images/turtlebot3_burger.png "TurtleBot3 Burger. Image taken from: http://emanual.robotis.com/docs/en/platform/turtlebot3/specifications/#data-of-turtlebot3-burger")
+<p align="center">
+  <img src="https://github.com/jhan15/exploration_robot/blob/main/images/turtlebot3_burger.png?raw=true" width="500">
+</p>
 
 ### System description
 
@@ -106,3 +108,9 @@ $ rosrun irob_assignment_1 controller.py
 ```bash
 $ rosrun irob_assignment_1 controller_feedback.py
 ```
+
+#### Result
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/62132206/137802502-a912a31f-b098-4403-9e78-18e47eed2eec.gif" width="600">
+</p>
